@@ -1,0 +1,17 @@
+<form [formGroup]="formGroup" (ngSubmit)="createUniversity()">
+    <div>
+        <label for="university">University</label>
+        <input formControlName="university" type="text" id="university" name="university" required>
+    </div>
+
+    <div>
+        <label for="location">Locaation:</label>
+        <p-dropdown [options]="locations" formControlName="location" optionLabel="NAME" [editable]="true"  placeholder="Select a Location"></p-dropdown>
+    </div>
+
+    <div>
+        <label for="domain">Domain:</label>
+        <textarea formControlName="domain" id="domain" name="domain" required></textarea>
+    </div>
+
+    <button>Create University</button>

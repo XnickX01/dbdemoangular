@@ -1,0 +1,22 @@
+<form [formGroup]="formGroup" (ngSubmit)="createLocation()">
+    <div>
+        <label for="NAME">Location Name</label>
+        <input formControlName="NAME" type="text" id="NAME" name="NAME" required>
+    </div>
+
+    <div>
+        <label for="DESCR" >Description:</label>
+        <textarea formControlName="DESCR" id="DESCR" name="DESCR" required></textarea>
+    </div>
+
+    <div>
+        <label for="LATITUDE" >Latitude:</label>
+        <input formControlName="LATITUDE" type="text" id="LATITUDE" name="LATITUDE" required>
+    </div>
+
+    <div>
+        <label for="LONGITUDE" >Longitude:</label>
+        <input formControlName="LONGITUDE" type="text" id="LONGITUDE" name="LONGITUDE" required>
+    </div>
+
+    <button>Create Location</button>

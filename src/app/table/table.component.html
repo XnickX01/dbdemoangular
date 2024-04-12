@@ -1,0 +1,21 @@
+<p-table #dt1 [columns]="cols" [value]="data" [tableStyle]="{ 'min-width': '50rem' }"
+[globalFilterFields]="fields"
+>
+    <ng-template pTemplate="header" let-columns>
+        <input pInputText type="text" (input)="dt1?.filterGlobal($event.target.value, 'contains')" placeholder="Search keyword" />
+        <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                <p-columnFilter type="text" [field]="col.field" display="menu"></p-columnFilter>
+                <p-sortIcon [field]="col.field"></p-sortIcon>
+                {{ col.header }}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+            <td *ngFor="let col of columns">
+                {{ rowData[col.field] }}
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

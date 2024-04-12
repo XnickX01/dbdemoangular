@@ -1,0 +1,18 @@
+<form [formGroup]="formGroup" (ngSubmit)="createRSO()">
+    <div>
+        <label for="rso">RSO</label>
+        <input formControlName="rso" type="text" id="rso" name="rso" required>
+    </div>
+
+    <div>
+        <label for="admin">Admin:</label>
+        <p-dropdown [options]="users" formControlName="admin" optionLabel="FIRST_NAME" [editable]="true"  placeholder="Select an Admin for RSO" ></p-dropdown>
+    </div>
+
+    <div>
+        <label for="university">University</label>
+        <p-dropdown [options]="university" formControlName="university" optionLabel="UNIV_NAME" [editable]="true"  placeholder="Select a University" ></p-dropdown>
+    </div>
+
+    <button>Create RSO</button>
+</form>

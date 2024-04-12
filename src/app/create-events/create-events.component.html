@@ -1,0 +1,42 @@
+<p-card class="card">
+
+    <form [formGroup]="formGroup" (ngSubmit)="createEvent()">
+        <div>
+            <label for="rso">RSO</label>
+            <br>
+            <!-- <input formControlName="rso" type="text" id="rso" name="rso" required> -->
+            <p-dropdown [options]="rso" formControlName="rso" optionLabel="RSO_NAME" [editable]="true"  placeholder="Select an RSO"></p-dropdown>
+        </div>
+        
+            <div>
+                <label for="location">Location:</label>
+                <br>
+                <p-dropdown [options]="locations" formControlName="location" optionLabel="NAME" [editable]="true"  placeholder="Select a Location"></p-dropdown>
+            </div>
+       
+        <div>
+            <label for="category">Category:</label>
+            <br>
+            <p-dropdown [options]="categories" formControlName="category"  [editable]="true"  placeholder="Select a Category"></p-dropdown>
+
+        </div>
+    
+        <div>
+            <label for="description">Description:</label>
+            <br>
+            <textarea formControlName="description" id="description" name="description" required></textarea>
+        </div>
+
+    
+        <div>
+            <label for="date">Date:</label>
+            <br>
+            <p-calendar (onSelect)="evenHour()" formControlName="date" [showSeconds]="true" [showTime]="true" ></p-calendar>
+        </div>
+
+    
+    
+        <button>Create Event</button>
+    
+    </form>
+</p-card>

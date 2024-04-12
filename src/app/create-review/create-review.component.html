@@ -1,0 +1,85 @@
+<div class="main">
+  <p-table
+    *ngIf="!isSelectedEvent"
+    class="table"
+    [(selection)]="selectedEvent"
+    selectionMode="single"
+    (onRowSelect)="getReviews($event)"
+    [value]="data"
+    [columns]="cols"
+    [tableStyle]="{ 'min-width': '50rem' }"
+  >
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns">
+          {{ col.header }}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr [pSelectableRow]="rowData">
+        <td *ngFor="let col of columns">
+          {{ rowData[col.field] }}
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <div *ngIf="isSelectedEvent">
+    <h2>Reviews for {{ selectedEvent['EVENT_DESCR'] }}</h2>
+    <div class="review-form">
+      <h3>Leave a Review</h3>
+      <form (ngSubmit)="onSubmitReview()" [formGroup]="formGroup">
+        <label for="comment">Review</label>
+        <br />
+        <textarea
+          id="comment"
+          name="comment"
+          formControlName="comment"
+          required
+          cols="30"
+        rows="5"
+        ></textarea>
+        <br>
+        <br />
+        <label for="rating">Rating</label>
+<div id="rating">
+  <div class="star-rating">
+      <input type="radio" id="star5"   (click)="onStarClick(1)" [checked]="formGroup.get('rating')?.value >= 1" />
+      <input type="radio" id="star4"   (click)="onStarClick(2)" [checked]="formGroup.get('rating')?.value >= 2" />
+      <input type="radio" id="star3"   (click)="onStarClick(3)" [checked]="formGroup.get('rating')?.value >= 3" />
+      <input type="radio" id="star2"  (click)="onStarClick(4)" [checked]="formGroup.get('rating')?.value >= 4" />
+      <input type="radio" id="star1"  (click)="onStarClick(5)" [checked]="formGroup.get('rating')?.value >= 5" />
+    <label for="star5" title="5 stars"></label>
+    <label for="star4" title="4 stars"></label>
+    <label for="star3" title="3 stars"></label>
+    <label for="star2" title="2 stars"></label>
+    <label for="star1" title="1 star"></label>
+  </div>
+</div>
+<input type="hidden" formControlName="rating">
+<br>
+<br>
+<button type="submit">Submit Review</button>
+      </form>
+
+      <ul>
+        <li *ngFor="let review of reviewData">
+          <div class="review">
+            <div class="review-header">
+              <div class="review-header-left">
+                <h3>{{ review.user_name }}</h3>
+                <p>{{ review.comment_date }}</p>
+              </div>
+              <div class="review-header-right">
+                <p>{{ review.rating }}/5</p>
+              </div>
+            </div>
+            <div class="review-body">
+              <p>{{ review.comment }}</p>
+            </div>
+          </div>
+        </li>
+      </ul> 
+    </div>
+  </div>
+</div>
